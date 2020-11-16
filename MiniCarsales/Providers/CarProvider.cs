@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 
 namespace MiniCarsales.Providers
 {
-    public sealed class CarProvider
+    public sealed class CarProvider : IDisposable
     {
         private static CarProvider _instance;
-        private readonly CarsalesContext _dbContext;
+        private CarsalesContext _dbContext;
         private static readonly object _instanceLock = new object();
+        private bool _disposed = false;
 
-        private CarProvider(CarsalesContext context)
-        {
-            _dbContext = context;
-        }
+        private CarProvider(){}
 
         public static CarProvider GetInstance()
         {
@@ -24,9 +22,9 @@ namespace MiniCarsales.Providers
             {
                 if (_instance == null)
                 {
-                    var dbContext = new CarsalesContext();
-                    _instance = new CarProvider(dbContext);
+                    _instance = new CarProvider();
                 }
+                _instance._dbContext = new CarsalesContext();
                 return _instance;
             }
         }
@@ -56,6 +54,22 @@ namespace MiniCarsales.Providers
                 // Log failure message here
             }
             return false;
+        }
+
+        public void Dispose() => Dispose(true);
+        private void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _dbContext.Dispose();
+            }
+
+            _disposed = true;
         }
     }
 }

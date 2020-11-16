@@ -12,19 +12,20 @@ namespace MiniCarsales.Controllers
 	public class CarController : Controller
 	{
 		private readonly ILogger<CarController> _logger;
-		private readonly CarProvider _carProvider;
 
 		public CarController(ILogger<CarController> logger)
 		{
 			_logger = logger;
-			_carProvider = CarProvider.GetInstance();
 		}
 
 		[HttpGet]
 		public IActionResult Index()
 		{
-			var allCars = _carProvider.GetAllCars().Select(CarViewModel.FromDbModel);
-			return View(allCars);
+			using (var carProvider = CarProvider.GetInstance())
+			{
+				var allCars = carProvider.GetAllCars().Select(CarViewModel.FromDbModel);
+				return View(allCars);
+			}
 		}
 
 		[HttpGet]
@@ -41,12 +42,17 @@ namespace MiniCarsales.Controllers
 				ModelState.AddModelError(string.Empty, "Please ensure all fields provided are valid.");
 				return View();
 			}
-			var success = _carProvider.AddCar(CarViewModel.ToDbModel(car));
-			if (!success)
+
+			using (var carProvider = CarProvider.GetInstance())
 			{
-				ModelState.AddModelError(string.Empty, "Unable to create car, please try again later.");
-				return View();
+				var success = carProvider.AddCar(CarViewModel.ToDbModel(car));
+				if (!success)
+				{
+					ModelState.AddModelError(string.Empty, "Unable to create car, please try again later.");
+					return View();
+				}
 			}
+			
 			return RedirectToAction("Index");
 		}
 	}
