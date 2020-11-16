@@ -32,3 +32,4 @@ msbuild.wrn
 .vs/
 *.cache
 *.suo
+MiniCarsales/carsales.db
