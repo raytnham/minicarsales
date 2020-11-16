@@ -1,6 +1,6 @@
 using System;
 
-namespace MiniCarsales.Models
+namespace MiniCarsales.ViewModels
 {
 	public class ErrorViewModel
 	{
