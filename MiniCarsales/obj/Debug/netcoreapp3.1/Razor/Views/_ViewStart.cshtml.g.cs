@@ -21,13 +21,13 @@ using MiniCarsales;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\nhamt\Documents\MiniCarsales\MiniCarsales\Views\_ViewImports.cshtml"
-using MiniCarsales.Models;
+using MiniCarsales.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a267209b2c660ae32876e7168acb803312c010fd", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"046a98cfcae81566c3fa4109ab723882bbb147e1", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

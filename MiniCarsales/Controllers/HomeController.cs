@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MiniCarsales.Models;
+using MiniCarsales.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
