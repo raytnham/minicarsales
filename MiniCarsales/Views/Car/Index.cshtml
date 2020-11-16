@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MiniCarsales.ViewModels.CarViewModel>
+
+@{
+	ViewData["Title"] = "Car Index";
+}
+
+<h2>Car Index</h2>
+
+<p>
+	<a asp-action="Create" class="btn btn-primary">Create Car</a>
+</p>
+<table class="table" border="0">
+	<thead>
+		<tr>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.Id)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.Model)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.Make)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.Year)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.Engine)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.Doors)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.Wheels)
+			</th>
+			<th scope="col">
+				@Html.DisplayNameFor(model => model.BodyType)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (!Model.Any())
+		{
+			<tr><td colspan="8">No car has been added.</td></tr>
+		}
+		@foreach (var item in Model)
+		{
+		<tr>
+			<td scope="row">
+				@Html.DisplayFor(modelItem => item.Id)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Model)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Make)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Year)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Engine)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Doors)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Wheels)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.BodyType)
+			</td>
+		</tr>
+		}
+	</tbody>
+</table>

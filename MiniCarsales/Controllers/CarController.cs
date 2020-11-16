@@ -26,5 +26,28 @@ namespace MiniCarsales.Controllers
 			var allCars = _carProvider.GetAllCars().Select(CarViewModel.FromDbModel);
 			return View(allCars);
 		}
+
+		[HttpGet]
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult Create(CarViewModel car)
+		{
+			if (!ModelState.IsValid)
+			{
+				ModelState.AddModelError(string.Empty, "Please ensure all fields provided are valid.");
+				return View();
+			}
+			var success = _carProvider.AddCar(CarViewModel.ToDbModel(car));
+			if (!success)
+			{
+				ModelState.AddModelError(string.Empty, "Unable to create car, please try again later.");
+				return View();
+			}
+			return RedirectToAction("Index");
+		}
 	}
 }
